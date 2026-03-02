@@ -23,7 +23,7 @@ button{ padding:10px 18px; border:none; background:#ffb3d9; color:white; border-
 button:hover{ background:#ff80c0; box-shadow:0 0 15px #ff80c0; transform:scale(1.1); }
 .carrito-boton{ position:fixed; bottom:20px; right:20px; background:#ff80c0; color:white; padding:15px 20px; border-radius:50px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; transition:transform 0.3s; }
 .carrito-boton:hover{ transform:scale(1.1); }
-.carrito{ position:fixed; bottom:80px; right:20px; width:300px; background:#fff0f6; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15); display:none; z-index:1000; }
+.carrito{ position:fixed; bottom:80px; right:20px; width:320px; background:#fff0f6; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15); display:none; z-index:1000; }
 .carrito h3{margin-top:0;}
 footer{ background:#ffe6f0; padding:20px; text-align:center; margin-top:40px; }
 footer a{ margin:0 10px; color:#d63384; text-decoration:none; font-size:1.5em; transition:transform 0.3s; }
@@ -49,13 +49,12 @@ select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1
     <h3>Fresas con crema</h3>
     <p>Fresas frescas con crema batida y chocolate.</p>
     <p class="precio">$15.000</p>
-    <label for="topping-fresas">Topping:</label>
-    <select id="topping-fresas">
+    <label for="sabor-fresas">Sabor de crema:</label>
+    <select id="sabor-fresas">
+      <option value="Arequipe">Arequipe</option>
       <option value="Chocolate">Chocolate</option>
-      <option value="Fresas">Fresas</option>
-      <option value="Crema">Crema</option>
     </select>
-    <button onclick="agregarConSabor('Fresas con crema',15000,'topping-fresas')">Agregar</button>
+    <button onclick="agregarConSabor('Fresas con crema',15000,'sabor-fresas')">Agregar</button>
   </div>
 
   <!-- Postre Tres Leches -->
@@ -84,13 +83,19 @@ select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1
     <h3>Mini Donas x8</h3>
     <p>Paquete de 8 mini donas glaseadas surtidas.</p>
     <p class="precio">$10.000</p>
+    <label for="sabor-8">Sabor de crema:</label>
+    <select id="sabor-8">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Chocolate">Chocolate</option>
+    </select>
     <label for="topping-8">Topping:</label>
     <select id="topping-8">
-      <option value="Chocolate">Chocolate</option>
-      <option value="Fresas">Fresas</option>
-      <option value="Crema">Crema</option>
+      <option value="Chispitas">Chispitas</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Maní">Maní</option>
+      <option value="M&Ms">M&Ms</option>
     </select>
-    <button onclick="agregarConSabor('Mini Donas x8',10000,'topping-8')">Agregar</button>
+    <button onclick="agregarConDosOpciones('Mini Donas x8',10000,'sabor-8','topping-8')">Agregar</button>
   </div>
 
   <!-- Mini Donas x4 -->
@@ -99,13 +104,19 @@ select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1
     <h3>Mini Donas x4</h3>
     <p>Paquete de 4 mini donas glaseadas surtidas.</p>
     <p class="precio">$5.000</p>
+    <label for="sabor-4">Sabor de crema:</label>
+    <select id="sabor-4">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Chocolate">Chocolate</option>
+    </select>
     <label for="topping-4">Topping:</label>
     <select id="topping-4">
-      <option value="Chocolate">Chocolate</option>
-      <option value="Fresas">Fresas</option>
-      <option value="Crema">Crema</option>
+      <option value="Chispitas">Chispitas</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Maní">Maní</option>
+      <option value="M&Ms">M&Ms</option>
     </select>
-    <button onclick="agregarConSabor('Mini Donas x4',5000,'topping-4')">Agregar</button>
+    <button onclick="agregarConDosOpciones('Mini Donas x4',5000,'sabor-4','topping-4')">Agregar</button>
   </div>
 </div>
 </section>
@@ -155,6 +166,14 @@ let total = 0;
 function agregarConSabor(producto, precio, selectId){
   let opcion = document.getElementById(selectId).value;
   carrito.push({ producto: producto + " (" + opcion + ")", precio: precio });
+  total += precio;
+  actualizar();
+}
+
+function agregarConDosOpciones(producto, precio, selectId1, selectId2){
+  let opcion1 = document.getElementById(selectId1).value;
+  let opcion2 = document.getElementById(selectId2).value;
+  carrito.push({ producto: producto + " (" + opcion1 + " + " + opcion2 + ")", precio: precio });
   total += precio;
   actualizar();
 }
