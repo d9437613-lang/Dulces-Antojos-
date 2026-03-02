@@ -30,7 +30,7 @@ footer a{ margin:0 10px; color:#d63384; text-decoration:none; font-size:1.5em; t
 footer a:hover{ transform:scale(1.2); }
 ul{ list-style:none; padding:0; text-align:left; }
 .promocion{ background:#ffe0f0; padding:20px; border-radius:20px; margin:20px auto; }
-.whatsapp-botones button{ width:100%; margin-bottom:10px; }
+select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1px solid #dcdcdc; }
 </style>
 </head>
 <body>
@@ -43,19 +43,34 @@ ul{ list-style:none; padding:0; text-align:left; }
 <section>
 <h2>Postres</h2>
 <div class="slider">
+  <!-- Fresas con crema -->
   <div class="card">
     <img src="images/fresas-con-crema.jpg" alt="Fresas con crema">
     <h3>Fresas con crema</h3>
     <p>Fresas frescas con crema batida y chocolate.</p>
     <p class="precio">$15.000</p>
-    <button onclick="agregar('Fresas con crema',15000)">Agregar</button>
+    <label for="topping-fresas">Topping:</label>
+    <select id="topping-fresas">
+      <option value="Chocolate">Chocolate</option>
+      <option value="Fresas">Fresas</option>
+      <option value="Crema">Crema</option>
+    </select>
+    <button onclick="agregarConSabor('Fresas con crema',15000,'topping-fresas')">Agregar</button>
   </div>
+
+  <!-- Postre Tres Leches -->
   <div class="card">
     <img src="images/postre-tres-leches.jpg" alt="Postre Tres Leches">
     <h3>Postre Tres Leches</h3>
     <p>Mini pastel tres leches con crema y cobertura de arequipe.</p>
     <p class="precio">$7.000</p>
-    <button onclick="agregar('Postre Tres Leches',7000)">Agregar</button>
+    <label for="sabor-tres-leches">Sabor:</label>
+    <select id="sabor-tres-leches">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Milo">Milo</option>
+    </select>
+    <button onclick="agregarConSabor('Postre Tres Leches',7000,'sabor-tres-leches')">Agregar</button>
   </div>
 </div>
 </section>
@@ -63,19 +78,34 @@ ul{ list-style:none; padding:0; text-align:left; }
 <section>
 <h2>Mini Donas</h2>
 <div class="slider">
+  <!-- Mini Donas x8 -->
   <div class="card">
     <img src="images/mini-donas-8.jpg" alt="Mini Donas x8">
     <h3>Mini Donas x8</h3>
     <p>Paquete de 8 mini donas glaseadas surtidas.</p>
     <p class="precio">$10.000</p>
-    <button onclick="agregar('Mini Donas x8',10000)">Agregar</button>
+    <label for="topping-8">Topping:</label>
+    <select id="topping-8">
+      <option value="Chocolate">Chocolate</option>
+      <option value="Fresas">Fresas</option>
+      <option value="Crema">Crema</option>
+    </select>
+    <button onclick="agregarConSabor('Mini Donas x8',10000,'topping-8')">Agregar</button>
   </div>
+
+  <!-- Mini Donas x4 -->
   <div class="card">
     <img src="images/mini-donas-4.jpg" alt="Mini Donas x4">
     <h3>Mini Donas x4</h3>
     <p>Paquete de 4 mini donas glaseadas surtidas.</p>
     <p class="precio">$5.000</p>
-    <button onclick="agregar('Mini Donas x4',5000)">Agregar</button>
+    <label for="topping-4">Topping:</label>
+    <select id="topping-4">
+      <option value="Chocolate">Chocolate</option>
+      <option value="Fresas">Fresas</option>
+      <option value="Crema">Crema</option>
+    </select>
+    <button onclick="agregarConSabor('Mini Donas x4',5000,'topping-4')">Agregar</button>
   </div>
 </div>
 </section>
@@ -99,10 +129,7 @@ ul{ list-style:none; padding:0; text-align:left; }
 <ul id="lista"></ul>
 <h3>Total: $<span id="total">0</span></h3>
 <br>
-<div class="whatsapp-botones">
-  <button onclick="enviarPedido(573044610933)">Enviar a 573044610933</button>
-  <button onclick="enviarPedido(573247408167)">Enviar a 324740816167</button>
-</div>
+<button onclick="enviarPedidoAmbos()">Enviar pedido por WhatsApp</button>
 <hr>
 <h3>💳 Métodos de Pago</h3>
 <p><strong>Nequi:</strong> 3104694372</p>
@@ -125,6 +152,13 @@ ul{ list-style:none; padding:0; text-align:left; }
 let carrito = [];
 let total = 0;
 
+function agregarConSabor(producto, precio, selectId){
+  let opcion = document.getElementById(selectId).value;
+  carrito.push({ producto: producto + " (" + opcion + ")", precio: precio });
+  total += precio;
+  actualizar();
+}
+
 function agregar(producto, precio){
   carrito.push({ producto, precio });
   total += precio;
@@ -142,8 +176,7 @@ function actualizar(){
   document.getElementById("total").textContent = total.toLocaleString("es-CO");
 }
 
-// Función actualizada: recibe el número de WhatsApp como parámetro
-function enviarPedido(numero){
+function enviarPedidoAmbos(){
   if(carrito.length === 0){
     alert("Agrega productos al carrito");
     return;
@@ -155,7 +188,9 @@ function enviarPedido(numero){
   });
   mensaje += "Total: $" + total.toLocaleString("es-CO");
 
-  window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+  const numeros = ["573044610933","573247408167"];
+  window.open(`https://wa.me/${numeros[0]}?text=${mensaje}`, "_blank");
+  setTimeout(() => { window.open(`https://wa.me/${numeros[1]}?text=${mensaje}`, "_blank"); }, 1000);
 }
 
 function toggleCarrito(){
