@@ -8,7 +8,7 @@
 <style>
 body{
   font-family: Arial, sans-serif;
-  background: #fff5f9;
+  background: #fff0f6;
   margin: 0;
   padding: 15px;
 }
@@ -23,15 +23,19 @@ h1{
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
 }
 
-.producto select, .producto button{
+.producto h3{
+  margin: 0 0 8px 0;
+}
+
+.producto select,
+.producto button{
   width: 100%;
-  margin-top: 8px;
   padding: 10px;
+  margin-top: 8px;
   border-radius: 10px;
-  border: 1px solid #ccc;
 }
 
 .producto button{
@@ -45,16 +49,8 @@ h1{
   background: white;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   margin-top: 20px;
-}
-
-input, select{
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid #ff4fa3;
-  width: 100%;
-  margin-top: 8px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
 }
 
 .boton-flotante{
@@ -62,12 +58,12 @@ input, select{
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(45deg,#ff4fa3,#ff85c1);
+  background: #ff4fa3;
   color: white;
-  padding: 15px 25px;
+  padding: 14px 25px;
   border-radius: 30px;
   font-weight: bold;
-  box-shadow: 0 8px 20px rgba(255,79,163,0.4);
+  box-shadow: 0 8px 18px rgba(255,79,163,0.3);
   cursor: pointer;
   display:none;
   animation: latido 1.5s infinite;
@@ -77,24 +73,6 @@ input, select{
   0%{transform:translateX(-50%) scale(1);}
   50%{transform:translateX(-50%) scale(1.05);}
   100%{transform:translateX(-50%) scale(1);}
-}
-
-.mensaje-exito{
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  color:#ff4fa3;
-  font-weight:bold;
-  text-align:center;
-  transition:0.4s;
-}
-
-.mensaje-exito.activo{
-  transform:translate(-50%,-50%) scale(1);
 }
 </style>
 </head>
@@ -110,7 +88,9 @@ input, select{
     <option>Milo</option>
     <option>Brownie</option>
   </select>
-  <button onclick="agregarProducto('Postre Tres Leches',7000,'saborTresLeches')">Agregar</button>
+  <button onclick="agregarProducto('Postre Tres Leches',7000,'saborTresLeches')">
+    Agregar
+  </button>
 </div>
 
 <div class="producto">
@@ -120,30 +100,19 @@ input, select{
     <option>Con Nutella</option>
     <option>Con Leche Condensada</option>
   </select>
-  <button onclick="agregarProducto('Fresas con Crema',15000,'saborFresas')">Agregar</button>
+  <button onclick="agregarProducto('Fresas con Crema',15000,'saborFresas')">
+    Agregar
+  </button>
 </div>
 
 <div id="carrito">
   <h3>🛒 Carrito</h3>
   <ul id="listaCarrito"></ul>
   <p><strong>Total: $<span id="total">0</span></strong></p>
-
-  <input type="text" id="nombreCliente" placeholder="Tu nombre">
-  <input type="text" id="direccionCliente" placeholder="Dirección">
-  <input type="text" id="barrioCliente" placeholder="Barrio">
-
-  <select id="metodoPago">
-    <option>Contra entrega</option>
-    <option>Transferencia</option>
-  </select>
 </div>
 
 <div id="botonFlotante" class="boton-flotante" onclick="enviarPedido()">
   💬 Pedir por WhatsApp
-</div>
-
-<div id="mensajeExito" class="mensaje-exito">
-  🎉 Pedido enviado con éxito 💜
 </div>
 
 <script>
@@ -169,52 +138,21 @@ function actualizarCarrito(){
   document.getElementById("botonFlotante").style.display=carrito.length>0?"block":"none";
 }
 
-function calcularDomicilio(barrio){
-  barrio=barrio.toLowerCase();
-  if(barrio.includes("centro")) return 2000;
-  if(barrio.includes("monserrate")) return 3000;
-  if(barrio.includes("recreo")) return 4000;
-  return 5000;
-}
-
 function enviarPedido(){
   if(carrito.length===0) return alert("Agrega productos");
 
-  const nombre=document.getElementById("nombreCliente").value;
-  const direccion=document.getElementById("direccionCliente").value;
-  const barrio=document.getElementById("barrioCliente").value;
-  const metodo=document.getElementById("metodoPago").value;
-
-  if(!nombre||!direccion||!barrio) return alert("Completa tus datos");
-
-  const domicilio=calcularDomicilio(barrio);
-  const totalFinal=total+domicilio;
-
   let mensaje="🍓 *DULCES ANTOJOS* 🍩\n\n";
-  mensaje+="👤 "+nombre+"\n📍 "+direccion+"\n🏘️ "+barrio+"\n\n";
-  mensaje+="🛒 Pedido:\n";
+  mensaje+="Hola, quiero hacer este pedido:\n\n";
 
   carrito.forEach(i=>{
     mensaje+="• "+i.producto+" - $"+i.precio.toLocaleString("es-CO")+"\n";
   });
 
-  mensaje+="\n🚚 Domicilio: $"+domicilio.toLocaleString("es-CO");
-  mensaje+="\n💰 Total: $"+totalFinal.toLocaleString("es-CO");
-  mensaje+="\n💳 Pago: "+metodo;
+  mensaje+="\nTotal: $"+total.toLocaleString("es-CO");
   mensaje+="\n\nGracias 💜";
 
   const numero="573044610933";
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,"_blank");
-
-  document.getElementById("mensajeExito").classList.add("activo");
-
-  carrito=[];
-  total=0;
-  actualizarCarrito();
-
-  setTimeout(()=>{
-    document.getElementById("mensajeExito").classList.remove("activo");
-  },3000);
 }
 </script>
 
