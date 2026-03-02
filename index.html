@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dulces Antojos | Cartagena</title>
+<title>Dulces Antojos | Cartagena - Pedidos en WhatsApp</title>
+
+<!-- Meta para compartir en redes -->
+<meta name="description" content="Dulces Antojos en Cartagena. Pide fresas con crema, postre tres leches y mini donas. Envía tu pedido por WhatsApp.">
+<meta property="og:title" content="Dulces Antojos | Cartagena">
+<meta property="og:description" content="Endulza tu día con nuestros postres. Haz tu pedido por WhatsApp.">
+<meta property="og:image" content="https://i.postimg.cc/YqF1f3pq/postres-ejemplo.jpg">
+<meta property="og:url" content="https://d9437613-lang.github.io/Dulces-Antojos-/">
 
 <style>
 body{
@@ -13,17 +20,14 @@ background:linear-gradient(to bottom,#fffafc,#ffeef5);
 color:#444;
 text-align:center;
 }
-
 header{
 background:linear-gradient(90deg,#ffd6e8,#ffc2dd);
 padding:40px 20px;
 }
-
 h1{
 color:#d63384;
 margin:0;
 }
-
 .productos{
 display:flex;
 flex-wrap:wrap;
@@ -31,7 +35,6 @@ justify-content:center;
 gap:25px;
 padding:30px;
 }
-
 .card{
 background:white;
 width:250px;
@@ -39,14 +42,17 @@ border-radius:20px;
 box-shadow:0 6px 15px rgba(0,0,0,0.08);
 padding:20px;
 }
-
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:10px;
+}
 .precio{
 color:#e83e8c;
 font-weight:bold;
 margin:10px 0;
 font-size:18px;
 }
-
 button{
 padding:10px 15px;
 border:none;
@@ -56,11 +62,9 @@ border-radius:20px;
 cursor:pointer;
 font-weight:bold;
 }
-
 button:hover{
 background:#ff80c0;
 }
-
 .carrito{
 background:#fff0f6;
 padding:30px;
@@ -68,13 +72,11 @@ margin:30px;
 border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
-
 footer{
 background:#f8d7e6;
 padding:20px;
 margin-top:30px;
 }
-
 ul{
 list-style:none;
 padding:0;
@@ -93,22 +95,31 @@ padding:0;
 
 <div class="productos">
 
+<!-- Producto 1 -->
 <div class="card">
-<h3>Fresas con crema</h3>
-<p class="precio">$15.000</p>
-<button onclick="agregar('Fresas con crema',15000)">Agregar</button>
+  <img src="https://i.postimg.cc/8s7nXkQ9/fresas-con-crema.jpg" alt="Fresas con crema">
+  <h3>Fresas con crema</h3>
+  <p>Fresas frescas con crema batida y un toque de chocolate. Tamaño mediano para 1 persona.</p>
+  <p class="precio">$15.000</p>
+  <button onclick="agregar('Fresas con crema',15000)">Agregar</button>
 </div>
 
+<!-- Producto 2 -->
 <div class="card">
-<h3>Postre Tres Leches</h3>
-<p class="precio">$6.000</p>
-<button onclick="agregar('Postre Tres Leches',6000)">Agregar</button>
+  <img src="https://i.postimg.cc/mkx6LVYc/tres-leches.jpg" alt="Postre Tres Leches">
+  <h3>Postre Tres Leches</h3>
+  <p>Mini pastel tres leches con crema y cobertura de arequipe. Porción individual deliciosa.</p>
+  <p class="precio">$6.000</p>
+  <button onclick="agregar('Postre Tres Leches',6000)">Agregar</button>
 </div>
 
+<!-- Producto 3 -->
 <div class="card">
-<h3>Mini Donas</h3>
-<p class="precio">$12.000</p>
-<button onclick="agregar('Mini Donas',12000)">Agregar</button>
+  <img src="https://i.postimg.cc/wT7VSPmV/mini-donas.jpg" alt="Mini Donas">
+  <h3>Mini Donas</h3>
+  <p>Mini donas glaseadas surtidas, paquete de 4 unidades, perfectas para compartir.</p>
+  <p class="precio">$12.000</p>
+  <button onclick="agregar('Mini Donas',12000)">Agregar</button>
 </div>
 
 </div>
@@ -170,7 +181,7 @@ carrito.forEach(item=>{
 mensaje += "- " + item.producto + " $" + formatoColombiano(item.precio) + "%0A";
 });
 mensaje += "Total: $" + formatoColombiano(total);
-window.open("https://wa.me/573044610933?text=" + mensaje);
+window.open("https://wa.me/573104694372?text=" + mensaje);
 }
 </script>
 
