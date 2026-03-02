@@ -4,37 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dulces Antojos | Cartagena</title>
-
 <meta name="description" content="Endulza tu día con Fresas con Crema, Postres Tres Leches y Mini Donas. Haz tu pedido por WhatsApp.">
-<meta property="og:title" content="Dulces Antojos | Cartagena">
-<meta property="og:description" content="Haz tu pedido por WhatsApp y disfruta de nuestros postres deliciosos.">
-<meta property="og:image" content="https://cdn.pixabay.com/photo/2018/12/13/11/38/strawberry-3876240_1280.jpg">
-<meta property="og:url" content="https://d9437613-lang.github.io/Dulces-Antojos-/">
-
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#fffafc,#ffeef5);color:#444;}
-header{background:linear-gradient(90deg,#ffd6e8,#ffc2dd);padding:60px 20px;text-align:center;color:#d63384;position:relative;}
-header h1{font-size:3em;margin:0;}
-header p{font-size:1.2em;margin:10px 0;animation:fadein 2s;}
+body {margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#fffafc,#ffeef5);color:#444;}
+header{background:linear-gradient(90deg,#ffd6e8,#ffc2dd);padding:60px 20px;text-align:center;color:#d63384;position:relative;overflow:hidden;}
+header h1{font-size:3em;margin:0;animation:fadein 2s;}
+header p{font-size:1.2em;margin:10px 0;animation:fadein 2.5s;}
 @keyframes fadein{0%{opacity:0;}100%{opacity:1;}}
-.banner{background:url('https://cdn.pixabay.com/photo/2018/12/13/11/38/strawberry-3876240_1280.jpg') center/cover no-repeat;height:300px;display:flex;align-items:center;justify-content:center;color:white;text-shadow:2px 2px 10px #000;font-size:2em;font-weight:bold;transition: transform 0.5s;}
+.banner{background:url('https://cdn.pixabay.com/photo/2018/12/13/11/38/strawberry-3876240_1280.jpg') center/cover no-repeat;height:300px;display:flex;align-items:center;justify-content:center;color:white;text-shadow:2px 2px 10px #000;font-size:2em;font-weight:bold;transition:transform 0.5s;}
 .banner:hover{transform: scale(1.02);}
 .seccion{padding:30px;text-align:center;}
-.seccion h2{color:#d63384;margin-bottom:20px;}
+.seccion h2{color:#d63384;margin-bottom:20px;animation:slidein 1s;}
+@keyframes slidein{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
 .productos{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;}
-.card{background:white;width:280px;border-radius:20px;box-shadow:0 6px 15px rgba(0,0,0,0.08);padding:15px;transition: transform 0.3s, box-shadow 0.3s;}
-.card:hover{transform: translateY(-5px) scale(1.03);box-shadow:0 12px 25px rgba(0,0,0,0.2);}
+.card{background:white;width:280px;border-radius:20px;box-shadow:0 6px 15px rgba(0,0,0,0.08);padding:15px;transition: transform 0.3s, box-shadow 0.3s;cursor:pointer;animation:cardfade 0.7s ease forwards;}
+@keyframes cardfade{0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+.card:hover{transform: rotateX(5deg) rotateY(5deg) scale(1.05);box-shadow:0 12px 25px rgba(0,0,0,0.25);}
 .card img{width:100%;border-radius:15px;margin-bottom:10px;transition: transform 0.3s;}
-.card img:hover{transform: scale(1.05);}
+.card img:hover{transform: scale(1.08);}
 .precio{color:#e83e8c;font-weight:bold;margin:10px 0;font-size:18px;}
 button{padding:12px 20px;border:none;background:#ffb3d9;color:white;border-radius:25px;cursor:pointer;font-weight:bold;transition:all 0.3s;}
 button:hover{background:#ff80c0;transform: scale(1.1);}
-.carrito{position:fixed;top:100px;right:20px;width:280px;background:#fff0f6;padding:25px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.carrito{position:fixed;top:100px;right:20px;width:280px;background:#fff0f6;padding:25px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,0.15);}
 footer{background:#f8d7e6;padding:20px;text-align:center;margin-top:30px;}
 footer a{margin:0 10px;color:#d63384;text-decoration:none;font-size:1.5em;transition:transform 0.3s;}
 footer a:hover{transform: scale(1.2);}
 ul{list-style:none;padding:0;text-align:left;}
-.promocion{background:#ffe0f0;padding:25px;border-radius:20px;margin:20px;}
+.promocion{background:#ffe0f0;padding:25px;border-radius:20px;margin:20px;animation:slidein 1s;}
 </style>
 </head>
 
@@ -74,11 +70,19 @@ ul{list-style:none;padding:0;text-align:left;}
 <h2>Mini Donas</h2>
 <div class="productos">
 <div class="card">
-<img src="https://cdn.pixabay.com/photo/2019/06/28/19/08/doughnuts-4303150_1280.jpg" alt="Mini Donas">
-<h3>Mini Donas</h3>
+<img src="https://cdn.pixabay.com/photo/2019/06/28/19/08/doughnuts-4303150_1280.jpg" alt="Mini Donas 8">
+<h3>Mini Donas x8</h3>
+<p>Paquete de 8 mini donas glaseadas surtidas.</p>
+<p class="precio">$10.000</p>
+<button onclick="agregar('Mini Donas x8',10000)">Agregar</button>
+</div>
+
+<div class="card">
+<img src="https://cdn.pixabay.com/photo/2019/06/28/19/08/doughnuts-4303150_1280.jpg" alt="Mini Donas 4">
+<h3>Mini Donas x4</h3>
 <p>Paquete de 4 mini donas glaseadas surtidas.</p>
-<p class="precio">$12.000</p>
-<button onclick="agregar('Mini Donas',12000)">Agregar</button>
+<p class="precio">$5.000</p>
+<button onclick="agregar('Mini Donas x4',5000)">Agregar</button>
 </div>
 </div>
 </div>
@@ -122,37 +126,11 @@ ul{list-style:none;padding:0;text-align:left;}
 </footer>
 
 <script>
-let carrito=[];
-let total=0;
-
-function formatoColombiano(numero){ return numero.toLocaleString("es-CO"); }
-
-function agregar(producto, precio){
-  carrito.push({producto, precio});
-  total += precio;
-  actualizar();
-}
-
-function actualizar(){
-  let lista=document.getElementById("lista");
-  lista.innerHTML="";
-  carrito.forEach(item=>{
-    let li=document.createElement("li");
-    li.textContent=item.producto + " - $" + formatoColombiano(item.precio);
-    lista.appendChild(li);
-  });
-  document.getElementById("total").textContent=formatoColombiano(total);
-}
-
-function enviarPedido(){
-  if(carrito.length===0){ alert("Agrega productos al carrito"); return; }
-  let mensaje="Hola, quiero hacer este pedido:%0A";
-  carrito.forEach(item=>{
-    mensaje+="- "+item.producto+" $"+formatoColombiano(item.precio)+"%0A";
-  });
-  mensaje+="Total: $"+formatoColombiano(total);
-  window.open("https://wa.me/573104694372?text="+mensaje);
-}
+let carrito=[];let total=0;
+function formatoColombiano(n){return n.toLocaleString("es-CO");}
+function agregar(producto,precio){carrito.push({producto,precio});total+=precio;actualizar();}
+function actualizar(){let l=document.getElementById("lista");l.innerHTML="";carrito.forEach(i=>{let li=document.createElement("li");li.textContent=i.producto+" - $"+formatoColombiano(i.precio);l.appendChild(li);});document.getElementById("total").textContent=formatoColombiano(total);}
+function enviarPedido(){if(carrito.length===0){alert("Agrega productos al carrito");return;}let m="Hola, quiero hacer este pedido:%0A";carrito.forEach(i=>{m+="- "+i.producto+" $"+formatoColombiano(i.precio)+"%0A";});m+="Total: $"+formatoColombiano(total);window.open("https://wa.me/573104694372?text="+m);}
 </script>
 
 </body>
