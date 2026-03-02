@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dulces Antojos | Cartagena</title>
 
-<!-- Tipografía moderna -->
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -56,10 +55,11 @@ section h2{
   border-radius:20px;
   box-shadow:0 6px 15px rgba(0,0,0,0.08);
   padding:15px;
-  transition:transform 0.3s,box-shadow 0.3s;
+  transition:transform 0.5s, box-shadow 0.5s;
+  perspective:1000px;
 }
 .card:hover{
-  transform: rotateY(5deg) rotateX(5deg) scale(1.05);
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
   box-shadow:0 12px 25px rgba(0,0,0,0.25);
 }
 .card img{
@@ -89,6 +89,7 @@ button{
 }
 button:hover{
   background:#ff80c0;
+  box-shadow:0 0 15px #ff80c0;
   transform:scale(1.1);
 }
 .carrito-boton{
@@ -170,8 +171,8 @@ ul{
     <img src="images/postre-tres-leches.jpg" alt="Postre Tres Leches">
     <h3>Postre Tres Leches</h3>
     <p>Mini pastel tres leches con crema y cobertura de arequipe.</p>
-    <p class="precio">$6.000</p>
-    <button onclick="agregar('Postre Tres Leches',6000)">Agregar</button>
+    <p class="precio">$7.000</p>
+    <button onclick="agregar('Postre Tres Leches',7000)">Agregar</button>
   </div>
 </div>
 </section>
@@ -202,9 +203,9 @@ ul{
   <div class="card promocion">
     <img src="images/combo-postres.jpg" alt="Combo Postres">
     <h3>Combo Postres</h3>
-    <p>1 Postre Tres Leches + 4 Mini Donas por solo $18.000.</p>
-    <p class="precio">$18.000</p>
-    <button onclick="agregar('Combo Postres',18000)">Agregar</button>
+    <p>1 Postre Tres Leches + 4 Mini Donas por solo $11.000.</p>
+    <p class="precio">$11.000</p>
+    <button onclick="agregar('Combo Postres',11000)">Agregar</button>
   </div>
 </div>
 </section>
@@ -225,21 +226,53 @@ ul{
 
 <footer>
 <p>📍 Cartagena</p>
-<p>📱 Pedidos: 304 4610933</p>
+<p>📱 Pedidos: 304 4610933 / 3247408167</p>
 <p>
-<a href="https://wa.me/573104694372" target="_blank">📱</a>
+<a href="https://wa.me/573044618933" target="_blank">📱</a>
+<a href="https://wa.me/573247408167" target="_blank">📱</a>
 <a href="https://instagram.com" target="_blank">📸</a>
 </p>
 <p>© 2026 Dulces Antojos</p>
 </footer>
 
 <script>
-let carrito=[];let total=0;
-function formatoColombiano(n){return n.toLocaleString("es-CO");}
-function agregar(producto,precio){carrito.push({producto,precio});total+=precio;actualizar();}
-function actualizar(){let l=document.getElementById("lista");l.innerHTML="";carrito.forEach(i=>{let li=document.createElement("li");li.textContent=i.producto+" - $"+formatoColombiano(i.precio);l.appendChild(li);});document.getElementById("total").textContent=formatoColombiano(total);}
-function enviarPedido(){if(carrito.length===0){alert("Agrega productos al carrito");return;}let m="Hola, quiero hacer este pedido:%0A";carrito.forEach(i=>{m+="- "+i.producto+" $"+formatoColombiano(i.precio)+"%0A";});m+="Total: $"+formatoColombiano(total);window.open("https://wa.me/573104694372?text="+m);}
-function toggleCarrito(){let c=document.getElementById("carrito");c.style.display=(c.style.display==="block")?"none":"block";}
+let carrito=[]; let total=0;
+
+function formatoColombiano(n){ return n.toLocaleString("es-CO"); }
+
+function agregar(producto,precio){ 
+  carrito.push({producto,precio}); 
+  total+=precio; 
+  actualizar();
+}
+
+function actualizar(){
+  let l=document.getElementById("lista");
+  l.innerHTML="";
+  carrito.forEach(i=>{
+    let li=document.createElement("li");
+    li.textContent=i.producto+" - $"+formatoColombiano(i.precio);
+    l.appendChild(li);
+  });
+  document.getElementById("total").textContent=formatoColombiano(total);
+}
+
+function enviarPedido(){
+  if(carrito.length===0){ alert("Agrega productos al carrito"); return; }
+  let m="Hola, quiero hacer este pedido:%0A";
+  carrito.forEach(i=>{ m+="- "+i.producto+" $"+formatoColombiano(i.precio)+"%0A"; });
+  m+="Total: $"+formatoColombiano(total);
+
+  let numeros = ["573044618933","573247408167"];
+  numeros.forEach(n=>{
+    window.open(`https://wa.me/${n}?text=${m}`);
+  });
+}
+
+function toggleCarrito(){
+  let c=document.getElementById("carrito");
+  c.style.display=(c.style.display==="block")?"none":"block";
+}
 </script>
 
 </body>
