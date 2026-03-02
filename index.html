@@ -30,6 +30,7 @@ footer a{ margin:0 10px; color:#d63384; text-decoration:none; font-size:1.5em; t
 footer a:hover{ transform:scale(1.2); }
 ul{ list-style:none; padding:0; text-align:left; }
 .promocion{ background:#ffe0f0; padding:20px; border-radius:20px; margin:20px auto; }
+.whatsapp-botones button{ width:100%; margin-bottom:10px; }
 </style>
 </head>
 <body>
@@ -98,7 +99,10 @@ ul{ list-style:none; padding:0; text-align:left; }
 <ul id="lista"></ul>
 <h3>Total: $<span id="total">0</span></h3>
 <br>
-<button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+<div class="whatsapp-botones">
+  <button onclick="enviarPedido(573044610933)">Enviar a 573044610933</button>
+  <button onclick="enviarPedido(573247408167)">Enviar a 324740816167</button>
+</div>
 <hr>
 <h3>💳 Métodos de Pago</h3>
 <p><strong>Nequi:</strong> 3104694372</p>
@@ -138,7 +142,8 @@ function actualizar(){
   document.getElementById("total").textContent = total.toLocaleString("es-CO");
 }
 
-function enviarPedido(){
+// Función actualizada: recibe el número de WhatsApp como parámetro
+function enviarPedido(numero){
   if(carrito.length === 0){
     alert("Agrega productos al carrito");
     return;
@@ -150,11 +155,7 @@ function enviarPedido(){
   });
   mensaje += "Total: $" + total.toLocaleString("es-CO");
 
-  // Abrir ambos números automáticamente
-  const numeros = ["573044610933","573247408167"];
-  numeros.forEach(num => {
-    window.open(`https://wa.me/${num}?text=${mensaje}`, "_blank");
-  });
+  window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
 }
 
 function toggleCarrito(){
