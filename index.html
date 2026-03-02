@@ -118,24 +118,49 @@ ul{ list-style:none; padding:0; text-align:left; }
 </footer>
 
 <script>
-let carrito=[]; let total=0;
-function agregar(producto,precio){ carrito.push({producto,precio}); total+=precio; actualizar(); }
-function actualizar(){
-  let l=document.getElementById("lista"); l.innerHTML="";
-  carrito.forEach(i=>{ let li=document.createElement("li"); li.textContent=i.producto+" - $"+i.precio.toLocaleString("es-CO"); l.appendChild(li); });
-  document.getElementById("total").textContent=total.toLocaleString("es-CO");
-}
-function enviarPedido(){
-  if(carrito.length===0){ alert("Agrega productos al carrito"); return; }
-  let m="Hola, quiero hacer este pedido:%0A";
-  carrito.forEach(i=>{ m+="- "+i.producto+" $"+i.precio.toLocaleString("es-CO")+"%0A"; });
-  m+="Total: $"+total.toLocaleString("es-CO");
+let carrito = [];
+let total = 0;
 
-  // Enlaces correctos
-  window.open(`https://wa.me/573044610933?text=${m}`); // 573044610933
-  window.open(`https://wa.me/573247408167?text=${m}`); // 3247408167
+function agregar(producto, precio){
+  carrito.push({ producto, precio });
+  total += precio;
+  actualizar();
 }
-function toggleCarrito(){ let c=document.getElementById("carrito"); c.style.display=(c.style.display==="block")?"none":"block"; }
+
+function actualizar(){
+  let l = document.getElementById("lista");
+  l.innerHTML = "";
+  carrito.forEach(i => {
+    let li = document.createElement("li");
+    li.textContent = i.producto + " - $" + i.precio.toLocaleString("es-CO");
+    l.appendChild(li);
+  });
+  document.getElementById("total").textContent = total.toLocaleString("es-CO");
+}
+
+function enviarPedido(){
+  if(carrito.length === 0){
+    alert("Agrega productos al carrito");
+    return;
+  }
+
+  let mensaje = "Hola, quiero hacer este pedido:%0A";
+  carrito.forEach(i => {
+    mensaje += "- " + i.producto + " $" + i.precio.toLocaleString("es-CO") + "%0A";
+  });
+  mensaje += "Total: $" + total.toLocaleString("es-CO");
+
+  // Abrir ambos números automáticamente
+  const numeros = ["573044610933","573247408167"];
+  numeros.forEach(num => {
+    window.open(`https://wa.me/${num}?text=${mensaje}`, "_blank");
+  });
+}
+
+function toggleCarrito(){
+  let c = document.getElementById("carrito");
+  c.style.display = (c.style.display === "block") ? "none" : "block";
+}
 </script>
 
 </body>
