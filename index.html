@@ -14,23 +14,17 @@ section{ padding:40px 20px; text-align:center; }
 section h2{ color:#d63384; margin-bottom:30px; font-size:2em; letter-spacing:1px; }
 .slider{ display:flex; overflow-x:auto; scroll-behavior:smooth; gap:25px; padding-bottom:20px; }
 .slider::-webkit-scrollbar{ display:none; }
-.card{ background:white; flex:0 0 260px; border-radius:20px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:15px; transition:transform 0.5s, box-shadow 0.5s; perspective:1000px; }
+.card{ background:white; flex:0 0 260px; border-radius:20px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:15px; transition:transform 0.5s, box-shadow 0.5s; }
 .card:hover{ transform: rotateY(10deg) rotateX(10deg) scale(1.05); box-shadow:0 12px 25px rgba(0,0,0,0.25); }
-.card img{ width:100%; border-radius:15px; margin-bottom:10px; transition:transform 0.3s; }
-.card img:hover{ transform:scale(1.08); }
+.card img{ width:100%; border-radius:15px; margin-bottom:10px; }
 .precio{ color:#e83e8c; font-weight:bold; margin:10px 0; font-size:18px; }
-button{ padding:10px 18px; border:none; background:#ffb3d9; color:white; border-radius:25px; cursor:pointer; font-weight:bold; transition:all 0.3s; }
-button:hover{ background:#ff80c0; box-shadow:0 0 15px #ff80c0; transform:scale(1.1); }
-.carrito-boton{ position:fixed; bottom:20px; right:20px; background:#ff80c0; color:white; padding:15px 20px; border-radius:50px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; transition:transform 0.3s; }
-.carrito-boton:hover{ transform:scale(1.1); }
-.carrito{ position:fixed; bottom:80px; right:20px; width:320px; background:#fff0f6; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15); display:none; z-index:1000; }
-.carrito h3{margin-top:0;}
+button{ padding:6px 12px; border:none; background:#ffb3d9; color:white; border-radius:20px; cursor:pointer; font-weight:bold; transition:0.3s; margin:3px; }
+button:hover{ background:#ff80c0; transform:scale(1.05); }
+.carrito-boton{ position:fixed; bottom:20px; right:20px; background:#ff80c0; color:white; padding:15px 20px; border-radius:50px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; }
+.carrito{ position:fixed; bottom:80px; right:20px; width:330px; background:#fff0f6; padding:20px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15); display:none; z-index:1000; max-height:70vh; overflow-y:auto;}
 footer{ background:#ffe6f0; padding:20px; text-align:center; margin-top:40px; }
-footer a{ margin:0 10px; color:#d63384; text-decoration:none; font-size:1.5em; transition:transform 0.3s; }
-footer a:hover{ transform:scale(1.2); }
 ul{ list-style:none; padding:0; text-align:left; }
-.promocion{ background:#ffe0f0; padding:20px; border-radius:20px; margin:20px auto; }
-select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1px solid #dcdcdc; }
+select{ width:100%; margin:5px 0 10px; padding:6px; border-radius:10px; border:1px solid #dcdcdc; }
 </style>
 </head>
 <body>
@@ -43,119 +37,92 @@ select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1
 <section>
 <h2>Postres</h2>
 <div class="slider">
-  <!-- Fresas con crema -->
-  <div class="card">
-    <img src="images/fresas-con-crema.jpg" alt="Fresas con crema">
-    <h3>Fresas con crema</h3>
-    <p>Fresas frescas con crema batida y chocolate.</p>
-    <p class="precio">$15.000</p>
-    <label for="sabor-fresas">Sabor de crema:</label>
-    <select id="sabor-fresas">
-      <option value="Arequipe">Arequipe</option>
-      <option value="Chocolate">Chocolate</option>
-    </select>
-    <button onclick="agregarConSabor('Fresas con crema',15000,'sabor-fresas')">Agregar</button>
-  </div>
 
-  <!-- Postre Tres Leches -->
-  <div class="card">
-    <img src="images/postre-tres-leches.jpg" alt="Postre Tres Leches">
-    <h3>Postre Tres Leches</h3>
-    <p>Mini pastel tres leches con crema y cobertura de arequipe.</p>
-    <p class="precio">$7.000</p>
-    <label for="sabor-tres-leches">Sabor:</label>
-    <select id="sabor-tres-leches">
-      <option value="Arequipe">Arequipe</option>
-      <option value="Oreo">Oreo</option>
-      <option value="Milo">Milo</option>
-    </select>
-    <button onclick="agregarConSabor('Postre Tres Leches',7000,'sabor-tres-leches')">Agregar</button>
-  </div>
+<div class="card">
+<img src="images/fresas-con-crema.jpg">
+<h3>Fresas con crema</h3>
+<p>Fresas frescas con crema batida y chocolate.</p>
+<p class="precio">$15.000</p>
+<select id="sabor-fresas">
+<option>Arequipe</option>
+<option>Chocolate</option>
+</select>
+<button onclick="agregarConSabor('Fresas con crema',15000,'sabor-fresas')">Agregar</button>
+</div>
+
+<div class="card">
+<img src="images/postre-tres-leches.jpg">
+<h3>Postre Tres Leches</h3>
+<p>Mini pastel tres leches con crema.</p>
+<p class="precio">$7.000</p>
+<select id="sabor-tres">
+<option>Arequipe</option>
+<option>Oreo</option>
+<option>Milo</option>
+</select>
+<button onclick="agregarConSabor('Postre Tres Leches',7000,'sabor-tres')">Agregar</button>
+</div>
+
 </div>
 </section>
 
 <section>
 <h2>Mini Donas</h2>
 <div class="slider">
-  <!-- Mini Donas x8 -->
-  <div class="card">
-    <img src="images/mini-donas-8.jpg" alt="Mini Donas x8">
-    <h3>Mini Donas x8</h3>
-    <p>Paquete de 8 mini donas glaseadas surtidas.</p>
-    <p class="precio">$10.000</p>
-    <label for="sabor-8">Sabor de crema:</label>
-    <select id="sabor-8">
-      <option value="Arequipe">Arequipe</option>
-      <option value="Chocolate">Chocolate</option>
-    </select>
-    <label for="topping-8">Topping:</label>
-    <select id="topping-8">
-      <option value="Chispitas">Chispitas</option>
-      <option value="Oreo">Oreo</option>
-      <option value="Maní">Maní</option>
-      <option value="M&Ms">M&Ms</option>
-    </select>
-    <button onclick="agregarConDosOpciones('Mini Donas x8',10000,'sabor-8','topping-8')">Agregar</button>
-  </div>
 
-  <!-- Mini Donas x4 -->
-  <div class="card">
-    <img src="images/mini-donas-4.jpg" alt="Mini Donas x4">
-    <h3>Mini Donas x4</h3>
-    <p>Paquete de 4 mini donas glaseadas surtidas.</p>
-    <p class="precio">$5.000</p>
-    <label for="sabor-4">Sabor de crema:</label>
-    <select id="sabor-4">
-      <option value="Arequipe">Arequipe</option>
-      <option value="Chocolate">Chocolate</option>
-    </select>
-    <label for="topping-4">Topping:</label>
-    <select id="topping-4">
-      <option value="Chispitas">Chispitas</option>
-      <option value="Oreo">Oreo</option>
-      <option value="Maní">Maní</option>
-      <option value="M&Ms">M&Ms</option>
-    </select>
-    <button onclick="agregarConDosOpciones('Mini Donas x4',5000,'sabor-4','topping-4')">Agregar</button>
-  </div>
+<div class="card">
+<img src="images/mini-donas-8.jpg">
+<h3>Mini Donas x8</h3>
+<p class="precio">$10.000</p>
+<select id="sabor8">
+<option>Arequipe</option>
+<option>Chocolate</option>
+</select>
+<select id="top8">
+<option>Chispitas</option>
+<option>Oreo</option>
+<option>Maní</option>
+<option>M&Ms</option>
+</select>
+<button onclick="agregarConDosOpciones('Mini Donas x8',10000,'sabor8','top8')">Agregar</button>
 </div>
-</section>
 
-<section>
-<h2>Promociones</h2>
-<div class="slider">
-  <div class="card promocion">
-    <img src="images/combo-postres.jpg" alt="Combo Postres">
-    <h3>Combo Postres</h3>
-    <p>1 Postre Tres Leches + 4 Mini Donas por solo $11.000.</p>
-    <p class="precio">$11.000</p>
-    <button onclick="agregar('Combo Postres',11000)">Agregar</button>
-  </div>
+<div class="card">
+<img src="images/mini-donas-4.jpg">
+<h3>Mini Donas x4</h3>
+<p class="precio">$5.000</p>
+<select id="sabor4">
+<option>Arequipe</option>
+<option>Chocolate</option>
+</select>
+<select id="top4">
+<option>Chispitas</option>
+<option>Oreo</option>
+<option>Maní</option>
+<option>M&Ms</option>
+</select>
+<button onclick="agregarConDosOpciones('Mini Donas x4',5000,'sabor4','top4')">Agregar</button>
+</div>
+
 </div>
 </section>
 
 <div class="carrito-boton" onclick="toggleCarrito()">🛒 Carrito</div>
+
 <div class="carrito" id="carrito">
 <h3>🛒 Tu Pedido</h3>
 <ul id="lista"></ul>
 <h3>Total: $<span id="total">0</span></h3>
 <br>
-<button onclick="enviarPedidoAmbos()">Enviar pedido por WhatsApp</button>
+<button onclick="enviarPedido()">Enviar por WhatsApp</button>
 <hr>
-<h3>💳 Métodos de Pago</h3>
 <p><strong>Nequi:</strong> 3104694372</p>
 <p><strong>Daviplata:</strong> 3044610933</p>
-<p>Después de pagar, envía el comprobante por WhatsApp.</p>
 </div>
 
 <footer>
 <p>📍 Cartagena</p>
-<p>📱 Pedidos: 304 4610933 / 3247408167</p>
-<p>
-<a href="https://wa.me/573044610933" target="_blank">📱</a>
-<a href="https://wa.me/573247408167" target="_blank">📱</a>
-<a href="https://instagram.com" target="_blank">📸</a>
-</p>
+<p>📱 304 4610933 / 3247408167</p>
 <p>© 2026 Dulces Antojos</p>
 </footer>
 
@@ -163,58 +130,87 @@ select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1
 let carrito = [];
 let total = 0;
 
-function agregarConSabor(producto, precio, selectId){
+function agregarConSabor(nombre, precio, selectId){
   let opcion = document.getElementById(selectId).value;
-  carrito.push({ producto: producto + " (" + opcion + ")", precio: precio });
+  agregarProducto(nombre + " (" + opcion + ")", precio);
+}
+
+function agregarConDosOpciones(nombre, precio, s1, s2){
+  let o1 = document.getElementById(s1).value;
+  let o2 = document.getElementById(s2).value;
+  agregarProducto(nombre + " (" + o1 + " + " + o2 + ")", precio);
+}
+
+function agregarProducto(nombre, precio){
+  let existente = carrito.find(p => p.nombre === nombre);
+  if(existente){
+    existente.cantidad++;
+  } else {
+    carrito.push({nombre, precio, cantidad:1});
+  }
   total += precio;
   actualizar();
 }
 
-function agregarConDosOpciones(producto, precio, selectId1, selectId2){
-  let opcion1 = document.getElementById(selectId1).value;
-  let opcion2 = document.getElementById(selectId2).value;
-  carrito.push({ producto: producto + " (" + opcion1 + " + " + opcion2 + ")", precio: precio });
-  total += precio;
+function cambiarCantidad(index, cambio){
+  carrito[index].cantidad += cambio;
+  total += carrito[index].precio * cambio;
+
+  if(carrito[index].cantidad <= 0){
+    carrito.splice(index,1);
+  }
   actualizar();
 }
 
-function agregar(producto, precio){
-  carrito.push({ producto, precio });
-  total += precio;
+function eliminarProducto(index){
+  total -= carrito[index].precio * carrito[index].cantidad;
+  carrito.splice(index,1);
   actualizar();
 }
 
 function actualizar(){
-  let l = document.getElementById("lista");
-  l.innerHTML = "";
-  carrito.forEach(i => {
+  let lista = document.getElementById("lista");
+  lista.innerHTML = "";
+
+  carrito.forEach((item,index)=>{
     let li = document.createElement("li");
-    li.textContent = i.producto + " - $" + i.precio.toLocaleString("es-CO");
-    l.appendChild(li);
+    li.innerHTML = `
+      <strong>${item.nombre}</strong><br>
+      Cantidad:
+      <button onclick="cambiarCantidad(${index},-1)">➖</button>
+      ${item.cantidad}
+      <button onclick="cambiarCantidad(${index},1)">➕</button>
+      <br>
+      Subtotal: $${(item.precio * item.cantidad).toLocaleString("es-CO")}
+      <br>
+      <button onclick="eliminarProducto(${index})">❌ Eliminar</button>
+      <hr>
+    `;
+    lista.appendChild(li);
   });
+
   document.getElementById("total").textContent = total.toLocaleString("es-CO");
 }
 
-function enviarPedidoAmbos(){
-  if(carrito.length === 0){
-    alert("Agrega productos al carrito");
+function enviarPedido(){
+  if(carrito.length===0){
+    alert("Agrega productos primero");
     return;
   }
 
-  let mensaje = "Hola, quiero hacer este pedido:%0A";
-  carrito.forEach(i => {
-    mensaje += "- " + i.producto + " $" + i.precio.toLocaleString("es-CO") + "%0A";
+  let mensaje = "Hola, quiero hacer este pedido:\n";
+  carrito.forEach(i=>{
+    mensaje += `- ${i.nombre} x${i.cantidad} = $${(i.precio*i.cantidad).toLocaleString("es-CO")}\n`;
   });
-  mensaje += "Total: $" + total.toLocaleString("es-CO");
+  mensaje += `Total: $${total.toLocaleString("es-CO")}`;
 
-  const numeros = ["573044610933","573247408167"];
-  window.open(`https://wa.me/${numeros[0]}?text=${mensaje}`, "_blank");
-  setTimeout(() => { window.open(`https://wa.me/${numeros[1]}?text=${mensaje}`, "_blank"); }, 1000);
+  let url = "https://wa.me/573044610933?text=" + encodeURIComponent(mensaje);
+  window.open(url,"_blank");
 }
 
 function toggleCarrito(){
   let c = document.getElementById("carrito");
-  c.style.display = (c.style.display === "block") ? "none" : "block";
+  c.style.display = c.style.display==="block"?"none":"block";
 }
 </script>
 
