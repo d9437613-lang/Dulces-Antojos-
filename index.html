@@ -131,8 +131,8 @@ function enviarPedido(){
   carrito.forEach(i=>{ m+="- "+i.producto+" $"+i.precio.toLocaleString("es-CO")+"%0A"; });
   m+="Total: $"+total.toLocaleString("es-CO");
 
-  // Enlaces correctos para ambos números
-  window.open(`https://wa.me/573044618933?text=${m}`); // 3044610933
+  // Enlaces correctos
+  window.open(`https://wa.me/573044610933?text=${m}`); // 573044610933
   window.open(`https://wa.me/573247408167?text=${m}`); // 3247408167
 }
 function toggleCarrito(){ let c=document.getElementById("carrito"); c.style.display=(c.style.display==="block")?"none":"block"; }
