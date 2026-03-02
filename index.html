@@ -119,20 +119,19 @@ ul{ list-style:none; padding:0; text-align:left; }
 
 <script>
 let carrito=[]; let total=0;
-function formatoColombiano(n){ return n.toLocaleString("es-CO"); }
 function agregar(producto,precio){ carrito.push({producto,precio}); total+=precio; actualizar(); }
 function actualizar(){
   let l=document.getElementById("lista"); l.innerHTML="";
-  carrito.forEach(i=>{ let li=document.createElement("li"); li.textContent=i.producto+" - $"+formatoColombiano(i.precio); l.appendChild(li); });
-  document.getElementById("total").textContent=formatoColombiano(total);
+  carrito.forEach(i=>{ let li=document.createElement("li"); li.textContent=i.producto+" - $"+i.precio.toLocaleString("es-CO"); l.appendChild(li); });
+  document.getElementById("total").textContent=total.toLocaleString("es-CO");
 }
 function enviarPedido(){
   if(carrito.length===0){ alert("Agrega productos al carrito"); return; }
   let m="Hola, quiero hacer este pedido:%0A";
-  carrito.forEach(i=>{ m+="- "+i.producto+" $"+formatoColombiano(i.precio)+"%0A"; });
-  m+="Total: $"+formatoColombiano(total);
+  carrito.forEach(i=>{ m+="- "+i.producto+" $"+i.precio.toLocaleString("es-CO")+"%0A"; });
+  m+="Total: $"+total.toLocaleString("es-CO");
 
-  // Abrir ambos números correctamente
+  // Enlaces correctos para ambos números
   window.open(`https://wa.me/573044618933?text=${m}`); // 3044610933
   window.open(`https://wa.me/573247408167?text=${m}`); // 3247408167
 }
