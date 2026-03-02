@@ -3,174 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dulces Antojos</title>
-
+<title>Dulces Antojos | Cartagena</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#fff0f6;
-  margin:0;
-  padding:15px;
-}
-
-h1{
-  text-align:center;
-  color:#ff4fa3;
-}
-
-.producto{
-  background:white;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:20px;
-  box-shadow:0 5px 12px rgba(0,0,0,0.08);
-}
-
-.producto img{
-  width:100%;
-  border-radius:15px;
-  margin-bottom:10px;
-}
-
-.producto h3{
-  margin:5px 0;
-}
-
-.producto select,
-.producto button{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  border-radius:10px;
-}
-
-.producto button{
-  background:#ff4fa3;
-  color:white;
-  border:none;
-  font-weight:bold;
-}
-
-#carrito{
-  background:white;
-  padding:15px;
-  border-radius:15px;
-  box-shadow:0 5px 12px rgba(0,0,0,0.08);
-  margin-top:20px;
-}
-
-.boton-flotante{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#ff4fa3;
-  color:white;
-  padding:15px 25px;
-  border-radius:30px;
-  font-weight:bold;
-  box-shadow:0 8px 18px rgba(255,79,163,0.3);
-  cursor:pointer;
-  display:none;
-  animation:latido 1.5s infinite;
-}
-
-@keyframes latido{
-  0%{transform:translateX(-50%) scale(1);}
-  50%{transform:translateX(-50%) scale(1.05);}
-  100%{transform:translateX(-50%) scale(1);}
-}
+body { margin:0; font-family:'Comfortaa', cursive; background:#fffafc; color:#444; }
+header { background:#ffe6f0; padding:50px 20px; text-align:center; color:#d63384; }
+header h1{ font-size:3em; margin:0; letter-spacing:2px; }
+header p{ font-size:1.2em; margin:10px 0; }
+section{ padding:40px 20px; text-align:center; }
+section h2{ color:#d63384; margin-bottom:30px; font-size:2em; letter-spacing:1px; }
+.slider{ display:flex; overflow-x:auto; scroll-behavior:smooth; gap:25px; padding-bottom:20px; }
+.slider::-webkit-scrollbar{ display:none; }
+.card{ background:white; flex:0 0 260px; border-radius:20px; box-shadow:0 6px 15px rgba(0,0,0,0.08); padding:15px; transition:transform 0.5s, box-shadow 0.5s; perspective:1000px; }
+.card:hover{ transform: rotateY(10deg) rotateX(10deg) scale(1.05); box-shadow:0 12px 25px rgba(0,0,0,0.25); }
+.card img{ width:100%; border-radius:15px; margin-bottom:10px; transition:transform 0.3s; }
+.card img:hover{ transform:scale(1.08); }
+.precio{ color:#e83e8c; font-weight:bold; margin:10px 0; font-size:18px; }
+button{ padding:10px 18px; border:none; background:#ffb3d9; color:white; border-radius:25px; cursor:pointer; font-weight:bold; transition:all 0.3s; }
+button:hover{ background:#ff80c0; box-shadow:0 0 15px #ff80c0; transform:scale(1.1); }
+.carrito-boton{ position:fixed; bottom:20px; right:20px; background:#ff80c0; color:white; padding:15px 20px; border-radius:50px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000; transition:transform 0.3s; }
+.carrito-boton:hover{ transform:scale(1.1); }
+.carrito{ position:fixed; bottom:80px; right:20px; width:320px; background:#fff0f6; padding:25px; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15); display:none; z-index:1000; }
+.carrito h3{margin-top:0;}
+footer{ background:#ffe6f0; padding:20px; text-align:center; margin-top:40px; }
+footer a{ margin:0 10px; color:#d63384; text-decoration:none; font-size:1.5em; transition:transform 0.3s; }
+footer a:hover{ transform:scale(1.2); }
+ul{ list-style:none; padding:0; text-align:left; }
+.promocion{ background:#ffe0f0; padding:20px; border-radius:20px; margin:20px auto; }
+select{ width:100%; margin:5px 0 15px; padding:6px; border-radius:10px; border:1px solid #dcdcdc; }
 </style>
 </head>
 <body>
 
+<header>
 <h1>🍓 Dulces Antojos 🍩</h1>
+<p>Endulzando Cartagena con amor 💕</p>
+</header>
 
-<!-- POSTRES 3 LECHES -->
-<div class="producto">
-<img src="https://i.imgur.com/7QK5B5F.jpg">
-<h3>Postre Tres Leches - $7.000</h3>
-<select id="saborTresLeches">
-<option>Arequipe</option>
-<option>Oreo</option>
-<option>Milo</option>
-<option>Brownie</option>
-</select>
-<button onclick="agregarProducto('Postre Tres Leches',7000,'saborTresLeches')">Agregar</button>
+<section>
+<h2>Postres</h2>
+<div class="slider">
+  <!-- Fresas con crema -->
+  <div class="card">
+    <img src="images/fresas-con-crema.jpg" alt="Fresas con crema">
+    <h3>Fresas con crema</h3>
+    <p>Fresas frescas con crema batida y chocolate.</p>
+    <p class="precio">$15.000</p>
+    <label for="sabor-fresas">Sabor de crema:</label>
+    <select id="sabor-fresas">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Chocolate">Chocolate</option>
+    </select>
+    <button onclick="agregarConSabor('Fresas con crema',15000,'sabor-fresas')">Agregar</button>
+  </div>
+
+  <!-- Postre Tres Leches -->
+  <div class="card">
+    <img src="images/postre-tres-leches.jpg" alt="Postre Tres Leches">
+    <h3>Postre Tres Leches</h3>
+    <p>Mini pastel tres leches con crema y cobertura de arequipe.</p>
+    <p class="precio">$7.000</p>
+    <label for="sabor-tres-leches">Sabor:</label>
+    <select id="sabor-tres-leches">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Milo">Milo</option>
+    </select>
+    <button onclick="agregarConSabor('Postre Tres Leches',7000,'sabor-tres-leches')">Agregar</button>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Mini Donas</h2>
+<div class="slider">
+  <!-- Mini Donas x8 -->
+  <div class="card">
+    <img src="images/mini-donas-8.jpg" alt="Mini Donas x8">
+    <h3>Mini Donas x8</h3>
+    <p>Paquete de 8 mini donas glaseadas surtidas.</p>
+    <p class="precio">$10.000</p>
+    <label for="sabor-8">Sabor de crema:</label>
+    <select id="sabor-8">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Chocolate">Chocolate</option>
+    </select>
+    <label for="topping-8">Topping:</label>
+    <select id="topping-8">
+      <option value="Chispitas">Chispitas</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Maní">Maní</option>
+      <option value="M&Ms">M&Ms</option>
+    </select>
+    <button onclick="agregarConDosOpciones('Mini Donas x8',10000,'sabor-8','topping-8')">Agregar</button>
+  </div>
+
+  <!-- Mini Donas x4 -->
+  <div class="card">
+    <img src="images/mini-donas-4.jpg" alt="Mini Donas x4">
+    <h3>Mini Donas x4</h3>
+    <p>Paquete de 4 mini donas glaseadas surtidas.</p>
+    <p class="precio">$5.000</p>
+    <label for="sabor-4">Sabor de crema:</label>
+    <select id="sabor-4">
+      <option value="Arequipe">Arequipe</option>
+      <option value="Chocolate">Chocolate</option>
+    </select>
+    <label for="topping-4">Topping:</label>
+    <select id="topping-4">
+      <option value="Chispitas">Chispitas</option>
+      <option value="Oreo">Oreo</option>
+      <option value="Maní">Maní</option>
+      <option value="M&Ms">M&Ms</option>
+    </select>
+    <button onclick="agregarConDosOpciones('Mini Donas x4',5000,'sabor-4','topping-4')">Agregar</button>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Promociones</h2>
+<div class="slider">
+  <div class="card promocion">
+    <img src="images/combo-postres.jpg" alt="Combo Postres">
+    <h3>Combo Postres</h3>
+    <p>1 Postre Tres Leches + 4 Mini Donas por solo $11.000.</p>
+    <p class="precio">$11.000</p>
+    <button onclick="agregar('Combo Postres',11000)">Agregar</button>
+  </div>
+</div>
+</section>
+
+<div class="carrito-boton" onclick="toggleCarrito()">🛒 Carrito</div>
+<div class="carrito" id="carrito">
+<h3>🛒 Tu Pedido</h3>
+<ul id="lista"></ul>
+<h3>Total: $<span id="total">0</span></h3>
+<br>
+<button onclick="enviarPedidoAmbos()">Enviar pedido por WhatsApp</button>
+<hr>
+<h3>💳 Métodos de Pago</h3>
+<p><strong>Nequi:</strong> 3104694372</p>
+<p><strong>Daviplata:</strong> 3044610933</p>
+<p>Después de pagar, envía el comprobante por WhatsApp.</p>
 </div>
 
-<!-- FRESAS -->
-<div class="producto">
-<img src="https://i.imgur.com/3Y1YpYB.jpg">
-<h3>Fresas con Crema - $15.000</h3>
-<select id="saborFresas">
-<option>Tradicional</option>
-<option>Con Nutella</option>
-<option>Con Leche Condensada</option>
-</select>
-<button onclick="agregarProducto('Fresas con Crema',15000,'saborFresas')">Agregar</button>
-</div>
-
-<!-- MINI DONAS -->
-<div class="producto">
-<img src="https://i.imgur.com/0rZ9Z1S.jpg">
-<h3>Mini Donas x8 - $12.000</h3>
-<select id="saborDonas">
-<option>Chocolate</option>
-<option>Fresa</option>
-<option>Mixtas</option>
-</select>
-<button onclick="agregarProducto('Mini Donas x8',12000,'saborDonas')">Agregar</button>
-</div>
-
-<div id="carrito">
-<h3>🛒 Carrito</h3>
-<ul id="listaCarrito"></ul>
-<p><strong>Total: $<span id="total">0</span></strong></p>
-</div>
-
-<div id="botonFlotante" class="boton-flotante" onclick="enviarPedido()">
-💬 Pedir por WhatsApp
-</div>
+<footer>
+<p>📍 Cartagena</p>
+<p>📱 Pedidos: 304 4610933 / 3247408167</p>
+<p>
+<a href="https://wa.me/573044610933" target="_blank">📱</a>
+<a href="https://wa.me/573247408167" target="_blank">📱</a>
+<a href="https://instagram.com" target="_blank">📸</a>
+</p>
+<p>© 2026 Dulces Antojos</p>
+</footer>
 
 <script>
-let carrito=[];
-let total=0;
+let carrito = [];
+let total = 0;
 
-function agregarProducto(nombre,precio,idSabor){
-const sabor=document.getElementById(idSabor).value;
-carrito.push({producto:nombre+" - "+sabor,precio});
-total+=precio;
-actualizarCarrito();
+function agregarConSabor(producto, precio, selectId){
+  let opcion = document.getElementById(selectId).value;
+  carrito.push({ producto: producto + " (" + opcion + ")", precio: precio });
+  total += precio;
+  actualizar();
 }
 
-function actualizarCarrito(){
-const lista=document.getElementById("listaCarrito");
-lista.innerHTML="";
-carrito.forEach(i=>{
-const li=document.createElement("li");
-li.textContent=i.producto+" - $"+i.precio.toLocaleString("es-CO");
-lista.appendChild(li);
-});
-document.getElementById("total").textContent=total.toLocaleString("es-CO");
-document.getElementById("botonFlotante").style.display=carrito.length>0?"block":"none";
+function agregarConDosOpciones(producto, precio, selectId1, selectId2){
+  let opcion1 = document.getElementById(selectId1).value;
+  let opcion2 = document.getElementById(selectId2).value;
+  carrito.push({ producto: producto + " (" + opcion1 + " + " + opcion2 + ")", precio: precio });
+  total += precio;
+  actualizar();
 }
 
-function enviarPedido(){
-if(carrito.length===0) return alert("Agrega productos");
+function agregar(producto, precio){
+  carrito.push({ producto, precio });
+  total += precio;
+  actualizar();
+}
 
-let mensaje="🍓 *DULCES ANTOJOS* 🍩\n\n";
-mensaje+="Hola, quiero hacer este pedido:\n\n";
+function actualizar(){
+  let l = document.getElementById("lista");
+  l.innerHTML = "";
+  carrito.forEach(i => {
+    let li = document.createElement("li");
+    li.textContent = i.producto + " - $" + i.precio.toLocaleString("es-CO");
+    l.appendChild(li);
+  });
+  document.getElementById("total").textContent = total.toLocaleString("es-CO");
+}
 
-carrito.forEach(i=>{
-mensaje+="• "+i.producto+" - $"+i.precio.toLocaleString("es-CO")+"\n";
-});
+function enviarPedidoAmbos(){
+  if(carrito.length === 0){
+    alert("Agrega productos al carrito");
+    return;
+  }
 
-mensaje+="\nTotal: $"+total.toLocaleString("es-CO");
-mensaje+="\n\nGracias 💜";
+  let mensaje = "Hola, quiero hacer este pedido:%0A";
+  carrito.forEach(i => {
+    mensaje += "- " + i.producto + " $" + i.precio.toLocaleString("es-CO") + "%0A";
+  });
+  mensaje += "Total: $" + total.toLocaleString("es-CO");
 
-const numero="573044610933";
-window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`,"_blank");
+  const numeros = ["573044610933","573247408167"];
+  window.open(`https://wa.me/${numeros[0]}?text=${mensaje}`, "_blank");
+  setTimeout(() => { window.open(`https://wa.me/${numeros[1]}?text=${mensaje}`, "_blank"); }, 1000);
+}
+
+function toggleCarrito(){
+  let c = document.getElementById("carrito");
+  c.style.display = (c.style.display === "block") ? "none" : "block";
 }
 </script>
 
