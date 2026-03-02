@@ -131,8 +131,10 @@ function enviarPedido(){
   let m="Hola, quiero hacer este pedido:%0A";
   carrito.forEach(i=>{ m+="- "+i.producto+" $"+formatoColombiano(i.precio)+"%0A"; });
   m+="Total: $"+formatoColombiano(total);
-  let numeros = ["573044618933","573247408167"]; // <-- Números correctos
-  numeros.forEach(n=>{ window.open(`https://wa.me/${n}?text=${m}`); });
+
+  // Abrir ambos números correctamente
+  window.open(`https://wa.me/573044618933?text=${m}`); // 3044610933
+  window.open(`https://wa.me/573247408167?text=${m}`); // 3247408167
 }
 function toggleCarrito(){ let c=document.getElementById("carrito"); c.style.display=(c.style.display==="block")?"none":"block"; }
 </script>
